@@ -1,0 +1,31 @@
+// 보조 기술에 대한 접근성을 유지하면서도 시각적으로 콘텐츠를 숨깁니다.
+//
+// See: https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/
+// See: https://kittygiraudel.com/2016/10/13/css-hide-and-seek/
+
+@mixin visually-hidden() {
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+
+	// 익명 셀이 될 수 있는 테이블 캡션의 위치 수정
+	&:not(caption) {
+		position: absolute !important;
+	}
+}
+
+// 콘텐츠가 포커스 되거나 자식 요소중 하나가 포커스 될때
+// (즉, 클래스가 적용된 요소/컨테이너 내에 포커스가 있을 때)에만 콘텐츠를 표시하는데 사용됩니다.
+//
+// 주요 내용으로 건너뛰기 링크에 유용합니다.
+// see https://www.w3.org/WAI/WCAG22/Techniques/general/G1.html
+@mixin visually-hidden-focusable() {
+	&:not(:focus):not(:focus-within) {
+		@include visually-hidden();
+	}
+}

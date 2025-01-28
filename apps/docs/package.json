@@ -1,27 +1,45 @@
 {
-  "name": "docs",
-  "version": "0.1.0",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@repo/ui": "workspace:*",
-    "next": "^15.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20",
-    "@types/react": "18.3.1",
-    "@types/react-dom": "18.3.0",
-    "typescript": "5.5.4"
-  }
+	"name": "docs",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"clean": "rm -rf .next",
+		"build-bs-css": "postcss ./node_modules/@repo/bootstrapy/dist/bootstrap.css -o ./public/bootstrap-scoped.css"
+	},
+	"dependencies": {
+		"@heroicons/react": "^2.2.0",
+		"@repo/bootstrapy": "workspace:^",
+		"@repo/restart-ui": "workspace:^",
+		"clsx": "^2.1.1",
+		"next": "15.1.5",
+		"nextra": "^4.0.4",
+		"nextra-theme-docs": "^4.0.4",
+		"prism-react-renderer": "^2.4.1",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-live": "^4.1.8"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"@mdx-js/typescript-plugin": "^0.0.8",
+		"@repo/eslint-config": "workspace:^",
+		"@repo/typescript-config": "workspace:^",
+		"@svgr/webpack": "^8.1.0",
+		"@tailwindcss/postcss": "4.0.0",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9",
+		"eslint-config-next": "15.1.5",
+		"postcss": "^8",
+		"postcss-cli": "^11.0.0",
+		"postcss-prefixwrap": "^1.53.0",
+		"tailwindcss": "^4.0.0",
+		"typescript": "^5"
+	}
 }

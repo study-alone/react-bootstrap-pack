@@ -1,0 +1,30 @@
+{
+  "name": "@repo/restart-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup",
+    "lint": "eslint ./src --report-unused-disable-directives --max-warnings 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:^",
+    "@repo/prettier-config": "workspace:^",
+    "@repo/typescript-config": "workspace:^",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.3",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5"
+  },
+  "peerDependencies": {
+    "@types/react": "^19.0.3",
+    "react": "^19.0.0"
+  }
+}

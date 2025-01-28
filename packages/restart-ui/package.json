@@ -1,0 +1,82 @@
+{
+	"name": "@repo/restart-ui",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./dist/esm/index.js",
+	"exports": {
+		".": {
+			"require": "./dist/cjs/index.js",
+			"import": "./dist/esm/index.js",
+			"types": "./dist//types/index.d.ts"
+		},
+		"./*": {
+			"import": "./dist/esm/*.js",
+			"require": "./dist/cjs/*.cjs",
+			"types": "./dist/types/*.d.ts"
+		},
+		"./Modal": {
+			"import": "./dist/esm/Modal/index.js",
+			"require": "./dist/cjs/Modal/index.cjs",
+			"types": "./dist/types/Modal/index.d.ts"
+		},
+		"./Button": {
+			"import": "./dist/esm/Button/index.js",
+			"require": "./dist/cjs/Button/index.cjs",
+			"types": "./dist/types/Button/index.d.ts"
+		},
+		"./Dropdown": {
+			"import": "./dist/esm/Dropdown/index.js",
+			"require": "./dist/cjs/Dropdown/index.cjs",
+			"types": "./dist/types/Dropdown/index.d.ts"
+		},
+		"./Nav": {
+			"import": "./dist/esm/Nav/index.js",
+			"require": "./dist/cjs/Nav/index.cjs",
+			"types": "./dist/types/Nav/index.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
+		"directive": "node ./addUseClient.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@popperjs/core": "^2.11.8",
+		"@react-aria/ssr": "^3.9.7",
+		"@repo/dom-helper": "workspace:^",
+		"@repo/eslint-config": "workspace:^",
+		"@repo/prettier-config": "workspace:^",
+		"@repo/react-transition-group": "workspace:^",
+		"@repo/restart-hooks": "workspace:^",
+		"@repo/typescript-config": "workspace:^",
+		"clsx": "^2.1.1",
+		"dequal": "^2.0.3",
+		"uncontrollable": "^9.0.0",
+		"warning": "^4.0.3"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.10",
+		"@types/react": "^19.0.3",
+		"@types/react-dom": "^19.0.2",
+		"@types/warning": "^3.0.3",
+		"eslint": "^9.15.0",
+		"globals": "^15.12.0",
+		"prettier": "^3.3.3",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tsup": "^8.3.5",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.15.0"
+	},
+	"peerDependencies": {
+		"@types/react": "^19.0.3",
+		"@types/react-dom": "^19.0.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"prettier": "@repo/prettier-config"
+}

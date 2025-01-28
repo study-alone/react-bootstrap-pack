@@ -1,0 +1,13 @@
+{
+    "extends": "@repo/typescript-config/react-library",
+    "compilerOptions": {
+        "baseUrl": "."
+    },
+    "include": [
+        "**/*",
+        "./eslint.config.mjs"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

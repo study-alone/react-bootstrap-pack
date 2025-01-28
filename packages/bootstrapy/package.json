@@ -1,0 +1,49 @@
+{
+	"name": "@repo/bootstrapy",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.ts",
+	"style": "dist/bootstrap.css",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
+		"build": "tsup"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:^",
+		"@repo/prettier-config": "workspace:^",
+		"@repo/typescript-config": "workspace:^",
+		"@types/holderjs": "^2.9.4",
+		"@types/react": "^19.0.3",
+		"@types/react-dom": "^19.0.2",
+		"@types/warning": "^3.0.3",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"sass": "^1.83.4",
+		"tsup": "^8.3.5"
+	},
+	"dependencies": {
+		"@repo/dom-helper": "workspace:^",
+		"@repo/react-transition-group": "workspace:^",
+		"@repo/restart-hooks": "workspace:^",
+		"@repo/restart-ui": "workspace:^",
+		"clsx": "^2.1.1",
+		"holderjs": "^2.9.9",
+		"uncontrollable": "^9.0.0",
+		"warning": "^4.0.3"
+	},
+	"peerDependencies": {
+		"@types/react": "^19.0.3",
+		"@types/react-dom": "^19.0.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	}
+}

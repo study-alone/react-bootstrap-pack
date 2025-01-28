@@ -1,0 +1,229 @@
+@use 'functions' as *;
+@use 'mixins/clearfix' as *;
+@use 'mixins/color-mode' as *;
+@use 'mixins/transition' as *;
+@use 'variables' as *;
+
+.carousel {
+	position: relative;
+
+	&.pointer-event {
+		touch-action: pan-y;
+	}
+}
+
+.carousel-inner {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	@include clearfix();
+}
+
+.carousel-item {
+	position: relative;
+	display: none;
+	float: left;
+	width: 100%;
+	margin-right: -100%;
+	backface-visibility: hidden;
+	@include transition($carousel-transition);
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+	display: block;
+}
+
+.carousel-item-next:not(.carousel-item-start),
+.active.carousel-item-end {
+	transform: translateX(100%);
+}
+
+.carousel-item-prev:not(.carousel-item-end),
+.active.carousel-item-start {
+	transform: translateX(-100%);
+}
+
+// transition 대체
+
+.carousel-fade {
+	.carousel-item {
+		opacity: 0;
+		transition-property: opacity;
+		transform: none;
+	}
+
+	.carousel-item.active,
+	.carousel-item-next.carousel-item-start,
+	.carousel-item-prev.carousel-item-end {
+		z-index: 1;
+		opacity: 1;
+	}
+
+	.active.carousel-item-start,
+	.active.carousel-item-end {
+		z-index: 0;
+		opacity: 0;
+		@include transition(opacity 0s $carousel-transition-duration);
+	}
+}
+
+// Left/Right controls for nav
+
+.carousel-control-prev,
+.carousel-control-next {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	// Use flex for alignment (1-3)
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: $carousel-control-width;
+	padding: 0;
+	color: $carousel-control-color;
+	text-align: center;
+	background: none;
+	border: 0;
+	opacity: $carousel-control-opacity;
+	@include transition($carousel-control-transition);
+
+	// hover/focus state
+	&:hover,
+	&:focus {
+		color: $carousel-control-color;
+		text-decoration: none;
+		outline: 0;
+		opacity: $carousel-control-hover-opacity;
+	}
+}
+
+.carousel-control-prev {
+	left: 0;
+	background-image: if(
+		$enable-gradients,
+		linear-gradient(90deg, rgba($black, 0.25), rgba($black, 0.001)),
+		null
+	);
+}
+.carousel-control-next {
+	right: 0;
+	background-image: if(
+		$enable-gradients,
+		linear-gradient(270deg, rgba($black, 0.25), rgba($black, 0.001)),
+		null
+	);
+}
+
+// Icons for within(내부용 아이콘)
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	display: inline-block;
+	width: $carousel-control-icon-width;
+	height: $carousel-control-icon-width;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 100% 100%;
+}
+
+.carousel-control-prev-icon {
+	background-image: escape-svg($carousel-control-prev-icon-bg) #{'/*rtl:' +
+		escape-svg($carousel-control-next-icon-bg) + '*/'};
+}
+.carousel-control-next-icon {
+	background-image: escape-svg($carousel-control-next-icon-bg) #{'/*rtl:' +
+		escape-svg($carousel-control-prev-icon-bg) + '*/'};
+}
+
+// Optional indicator pips/controls
+// 다음 class가 있는 container(ex: 목록)를 추가하고 carousel에 있는 각 slide에 대해
+// data-bs-target이 있는 item(button과 같은 focusable한 control이 이상적)을 추가합니다.
+
+.carousel-indicators {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	// .carousel-control 의 width를 여백으로 사용
+	margin-right: $carousel-control-width;
+	margin-bottom: 1rem;
+	margin-left: $carousel-control-width;
+
+	[data-bs-target] {
+		box-sizing: content-box;
+		flex: 0 1 auto;
+		width: $carousel-indicator-width;
+		height: $carousel-indicator-height;
+		padding: 0;
+		margin-right: $carousel-indicator-spacer;
+		margin-left: $carousel-indicator-spacer;
+		text-indent: -999px;
+		cursor: pointer;
+		background-color: $carousel-indicator-active-bg;
+		background-clip: padding-box;
+		border: 0;
+		// transparent border를 사용하여 hit영역을 위아래로 10px씩 늘립니다.
+		border-top: $carousel-indicator-hit-area-height solid transparent;
+		border-bottom: $carousel-indicator-hit-area-height solid transparent;
+		opacity: $carousel-indicator-opacity;
+		@include transition($carousel-indicator-transition);
+	}
+
+	.active {
+		opacity: $carousel-indicator-active-opacity;
+	}
+}
+
+// Optional captions
+
+.carousel-caption {
+	position: absolute;
+	right: (100% - $carousel-caption-width) * 0.5;
+	bottom: $carousel-caption-spacer;
+	left: (100% - $carousel-caption-width) * 0.5;
+	padding-top: $carousel-caption-padding-y;
+	padding-bottom: $carousel-caption-padding-y;
+	color: $carousel-caption-color;
+	text-align: center;
+}
+
+// Dark mode carousel
+@mixin carousel-dark() {
+	.carousel-control-prev-icon,
+	.carousel-control-next-icon {
+		filter: $carousel-dark-control-icon-filter;
+	}
+
+	.carousel-indicators [data-bs-target] {
+		background-clip: $carousel-dark-indicator-active-bg;
+	}
+
+	.carouse-caption {
+		color: $carousel-dark-caption-color;
+	}
+}
+
+.carousel-dark {
+	@include carousel-dark();
+}
+
+@if $enable-dark-mode {
+	@include color-mode(dark) {
+		@if $color-mode-type == 'media-query' {
+			.carousel {
+				@include carousel-dark();
+			}
+		} @else {
+			.carousel,
+			&.carousel {
+				@include carousel-dark();
+			}
+		}
+	}
+}

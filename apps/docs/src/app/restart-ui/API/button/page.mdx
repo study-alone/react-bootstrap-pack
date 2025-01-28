@@ -1,0 +1,102 @@
+import { Button } from '@repo/restart-ui'
+import { LiveCode } from '@/components/LiveCode'
+import { Callout } from 'nextra/components'
+import { StyledButton } from './styled-button'
+
+# Button
+
+추상화된 `Button` 컴포넌트입니다. button이 아닌 HTML요소를 Button으로 활용할 수도 있습니다.
+
+```tsx filename="Basic button"
+<Button>I'm a Button</Button>
+```
+
+<LiveCode
+	code={`<Button>I'm a Button</Button>`}
+	scope={{ Button }}
+	onlyPreview
+	title="Basic button"
+/>
+
+편의성을 위해 다양한 props를 제공합니다.
+
+```tsx filename="props"
+<div className="space-x-4">
+	<Button>I'm a Button</Button>
+	<Button href="/home">I'm a link</Button>
+	<Button as="span">I'm a span but also a button</Button>
+</div>
+```
+
+<LiveCode
+	code={`<div className="space-x-4">
+	<Button>I'm a Button</Button>
+	<Button href="/home">I'm a link</Button>
+	<Button as="span">I'm a span but also a button</Button>
+</div>`}
+	scope={{ Button }}
+	onlyPreview
+	title="Basic button"
+/>
+
+## useButtonProps
+
+해당 hook을 이용해 사용자가 원하는 `Button`을 만들 수 있습니다.
+명식적인 tagName을 제공하지 않으면 `href` 속성 여부에 따라 `a` 또는 `button`으로 판단하여 렌더링 합니다.
+
+```tsx filenmae="using useButtonProps"
+import { useButtonProps } from '@repo/restart-ui/Button/useButtonProps'
+
+const CompanyButton = (props) => {
+  const [ariaButtonProps, { tagName: Tag }] = useButtonProps(props);
+
+  return <Tag {...props} {...ariaButtonProps} />
+}
+
+<div className="space-x-4">
+    <CompanyButton>Hey there<CompanyButton>
+    <CompanyButton href="/home">I'm a link</CompanyButton>
+</div>
+```
+
+## Styling
+
+아래 예제는 tailwind css를 활용한 예제입니다.
+
+<Callout>
+	HTML요소중 disabled 속성을 지원하지않는 요소도 있기 때문에 `:disabled` 셀렉터를 통한 스타일링
+	보다는 `diabled` prop을 통한 스타일링을 해야합니다.
+</Callout>
+
+```tsx filename="styling button"
+import { Button type ButtonProps } from '@repo/restart-ui/Button'
+
+const StyledButton = (props) => {
+  return (
+    <Button
+        {...props}
+        className={clsx(
+            props.className,
+            'transition text-md',
+            'h-10 bg-white border border-primary text-blue-400 rounded px-8 mt-4 appearance-none text-center whitespace-no-wrap',
+            'focus:outline-none focus:ring-4 ring-primary-200',
+            !props.disabled && 'cursor-pointer hover:bg-primary hover:text-blue-600',
+            'active:bg-primary-600 active:text-white',
+            props.disabled && 'cursor-not-allowed opacity-60',
+        )}
+	/>
+  );
+}
+```
+
+<LiveCode
+	code={`
+<div className="space-x-4">
+	<StyledButton>Button</StyledButton>
+	<StyledButton disabled>Disabled</StyledButton>
+</div>
+`}
+	scope={{ Button, StyledButton }}
+	onlyPreview
+	title="Basic button"
+/>

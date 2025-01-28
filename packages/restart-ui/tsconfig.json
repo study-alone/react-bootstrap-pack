@@ -1,0 +1,12 @@
+{
+    "extends": "@repo/typescript-config/react-library",
+    "compilerOptions": {
+        "noEmit": false,
+        "allowImportingTsExtensions": false,
+        "baseUrl": ".",
+        "moduleResolution": "bundler",
+        "module":"ES2022",
+    },
+    "include": ["src/**/*", "./eslint.config.mjs", "./tsup.config.ts"],
+    "exclude": ["node_modules"]
+}

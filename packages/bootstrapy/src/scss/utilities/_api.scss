@@ -1,0 +1,60 @@
+@use '../mixins/breakpoints' as *;
+@use '../mixins/utilities' as *;
+@use '../utilities' as *;
+@use '../variables' as *;
+@use '../vendor/rfs';
+
+@use 'sass:map';
+@use 'sass:meta';
+
+// Loop over each breakpoint
+@each $breakpoint in map.keys($grid-breakpoints) {
+	// Generate media query if needed
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		// Loop over each utility property
+		@each $key, $utility in $utilities {
+			// utility는 `false`로 disable할 수 있으므로 먼저 utility가 map인지 확인하세요
+			// responsive media-query가 enable되어 있거나 기본 media-query인 경우에만 계속 진행합니다
+			@if meta.type-of($utility) == 'map' and (map.get($utility, responsive) or $infix == '')
+			{
+				@include generate-utility($utility, $infix);
+			}
+		}
+	}
+}
+
+// RFS rescaling
+// see https://github.com/twbs/rfs
+@media (min-width: rfs.$rfs-mq-value) {
+	@each $breakpoint in map.keys($grid-breakpoints) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		@if (map.get($grid-breakpoints, $breakpoint) < rfs.$rfs-breakpoint) {
+			// Loop over each utility property
+			@each $key, $utility in $utilities {
+				// utility는 `false`로 disable할 수 있으므로 먼저 utility가 map인지 확인하세요
+				// responsive media-query가 enable되어 있거나 기본 media-query인 경우에만 계속 진행합니다
+				@if meta.type-of($utility) ==
+					'map' and
+					map.get($utility, rfs) and
+					(map.get($utility, responsive) or $infix == '')
+				{
+					@include generate-utility($utility, $infix, true);
+				}
+			}
+		}
+	}
+}
+
+// Print utilities
+@media print {
+	@each $key, $utility in $utilities {
+		// utility는 `false`로 disable할 수 있으므로 먼저 utility가 map인지 확인하세요
+		// 그런 다음 utility에 print 스타일이 필요한지 확인 합니다
+		@if meta.type-of($utility) == 'map' and map.get($utility, print) == true {
+			@include generate-utility($utility, '-print');
+		}
+	}
+}
