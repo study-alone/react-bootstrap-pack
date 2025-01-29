@@ -1,10 +1,12 @@
 import { useContext, useRef } from 'react'
 import { useCallbackRef } from '@repo/restart-hooks'
-import { useClickOutside, type ClickOutsideOptions } from '../useClickOutside'
+import { useClickOutside } from '../useClickOutside'
 import { mergeOptionsWithPopperConfig } from '../mergeOptionsWithPopperConfig'
 import { usePopper } from '../usePopper'
-import { DropdownContext, type DropdownContextValue } from './DropdownContext'
+import { DropdownContext } from './DropdownContext'
+import type { DropdownContextValue } from './DropdownContext'
 import type { UsePopperOptions, Placement, Offset, UsePopperState } from '../usePopper'
+import type { ClickOutsideOptions } from '../useClickOutside'
 
 export interface UseDropdownMenuOptions {
 	/**

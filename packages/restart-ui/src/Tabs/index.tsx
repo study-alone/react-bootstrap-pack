@@ -2,8 +2,10 @@ import { useMemo } from 'react'
 import { useUncontrolledProp } from 'uncontrollable'
 import { useSSRSafeId } from '../ssr'
 import { SelectableContext } from '../SelectableContext'
-import { TabContext, type TabContextValue } from './TabContext'
-import { TabPanel, type TabPanelProps } from './TabPanel'
+import { TabContext } from './TabContext'
+import { TabPanel } from './TabPanel'
+import type { TabPanelProps } from './TabPanel'
+import type { TabContextValue } from './TabContext'
 import type { EventKey, SelectCallback, TransitionComponent } from '../types'
 
 export type { TabPanelProps }

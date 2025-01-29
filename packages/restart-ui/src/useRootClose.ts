@@ -1,8 +1,9 @@
 import { useEventCallback } from '@repo/restart-hooks'
 import { listen, ownerDocument } from '@repo/dom-helper'
 import { useEffect } from 'react'
-import { useClickOutside, type ClickOutsideOptions, getRefTarget } from './useClickOutside'
+import { useClickOutside, getRefTarget } from './useClickOutside'
 import { isEscKey } from './utils'
+import type { ClickOutsideOptions } from './useClickOutside'
 
 const noop = () => {}
 

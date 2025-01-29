@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useCallbackRef, useMergedRefs } from '@repo/restart-hooks'
 import { mergeOptionsWithPopperConfig } from './mergeOptionsWithPopperConfig'
-import { useWaitForDOMRef, type DOMContainer } from './useWaitForDOMRef'
+import { useWaitForDOMRef } from './useWaitForDOMRef'
 import {
 	type Placement,
 	type UsePopperState,
@@ -11,8 +11,10 @@ import {
 	type VirtualElement,
 	usePopper,
 } from './usePopper'
-import { useRootClose, type RootCloseOptions } from './useRootClose'
+import { useRootClose } from './useRootClose'
 import { renderTransition } from './ImperativeTransition/renderTransition'
+import type { RootCloseOptions } from './useRootClose'
+import type { DOMContainer } from './useWaitForDOMRef'
 import type { TransitionCallbacks } from '@repo/react-transition-group'
 import type { TransitionComponent } from './types'
 import type { TransitionHandler } from './ImperativeTransition/useTransition'

@@ -1,7 +1,8 @@
 import { useCallback, useContext } from 'react'
 import { useSSRSafeId } from '../ssr'
 import { isRoleMenu } from './isRoleMenu'
-import { DropdownContext, type DropdownContextValue } from './DropdownContext'
+import { DropdownContext } from './DropdownContext'
+import type { DropdownContextValue } from './DropdownContext'
 
 const noop = () => {}
 

@@ -1,4 +1,5 @@
-import { useRTGTransitionProps, type TransitionProps } from './useRTGTransitionProps'
+import { useRTGTransitionProps } from './useRTGTransitionProps'
+import type { TransitionProps } from './useRTGTransitionProps'
 import type { TransitionComponent } from './types'
 
 export type RTGTransitionProps = TransitionProps & {

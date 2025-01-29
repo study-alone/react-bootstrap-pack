@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom'
-import { useWaitForDOMRef, type DOMContainer } from './useWaitForDOMRef'
+import { useWaitForDOMRef } from './useWaitForDOMRef'
+import type { DOMContainer } from './useWaitForDOMRef'
 import type { VirtualElement } from './usePopper'
 
 export interface PortalProps {

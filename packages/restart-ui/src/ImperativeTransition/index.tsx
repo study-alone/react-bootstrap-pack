@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useMergedRefs } from '@repo/restart-hooks'
-import { useTransition, type TransitionHandler } from './useTransition'
+import { useTransition } from './useTransition'
+import type { TransitionHandler } from './useTransition'
 import type { TransitionProps } from '../types'
 
 export interface ImperativeTransitionProps extends Omit<TransitionProps, 'nodeRef'> {
