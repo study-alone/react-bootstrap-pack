@@ -3,11 +3,15 @@ import { useButtonProps } from './useButtonProps'
 
 export { useButtonProps }
 
-export interface BaseButtonProps<A = keyof React.JSX.IntrinsicElements> {
+type TagName<T extends HTMLElement> = {
+	[K in keyof HTMLElementTagNameMap]: HTMLElementTagNameMap[K] extends T ? K : never
+}[keyof HTMLElementTagNameMap]
+
+export interface BaseButtonProps<T extends HTMLElement> {
 	/**
 	 * 유효한 Component 유형을 전달하여 기본 렌더링 요소를 직접 제어합니다.
 	 */
-	as?: A
+	as?: TagName<T> | undefined
 
 	/** The disabled state of the button */
 	disabled?: boolean | undefined
@@ -19,24 +23,20 @@ export interface BaseButtonProps<A = keyof React.JSX.IntrinsicElements> {
 	target?: string | undefined
 
 	rel?: string | undefined
-
-	ref?: A extends keyof React.JSX.IntrinsicElements
-		? React.Ref<React.JSX.IntrinsicElements[A]>
-		: never
 }
 
-type IntrinsicElementProps<A extends keyof React.JSX.IntrinsicElements> =
-	React.JSX.IntrinsicElements[A]
+// type IntrinsicElementProps<A extends keyof HTMLElementTagNameMap> = keyof HTMLElementTagNameMap[A]
 
-export type ButtonProps<A extends keyof React.JSX.IntrinsicElements> = BaseButtonProps<A> &
-	IntrinsicElementProps<A>
+// export type ButtonProps<A extends keyof HTMLElementTagNameMap> = BaseButtonProps<A> &
+// 	IntrinsicElementProps<A>
 
-export const Button = <A extends keyof React.JSX.IntrinsicElements>({
-	ref,
-	as: asProp,
-	disabled,
-	...restProps
-}: ButtonProps<A>) => {
+export interface ButtonProps<T extends HTMLElement = HTMLButtonElement>
+	extends BaseButtonProps<T>,
+		React.ComponentPropsWithoutRef<'button'> {
+	ref?: React.Ref<T>
+}
+
+export const Button = ({ ref, as: asProp, disabled, ...restProps }: ButtonProps) => {
 	const [buttonProps, { tagName: Component }] = useButtonProps({
 		tagName: asProp,
 		disabled,

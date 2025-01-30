@@ -26,12 +26,12 @@ export interface UseButtonPropsOptions extends AnchorOptions {
 	disabled?: boolean
 	onClick?: React.EventHandler<React.MouseEvent | React.KeyboardEvent>
 	tabIndex?: number
-	tagName?: keyof React.JSX.IntrinsicElements
+	tagName?: keyof HTMLElementTagNameMap
 	role?: React.AriaRole | undefined
 }
 
 export interface UseButtonPropsMetadata {
-	tagName: React.ElementType
+	tagName: React.ElementType | keyof HTMLElementTagNameMap
 }
 
 export function useButtonProps({

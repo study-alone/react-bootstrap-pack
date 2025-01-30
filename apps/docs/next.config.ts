@@ -9,9 +9,16 @@ const withNextra = nextra({
 	// contentDirBasePath: '/docs',
 })
 
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig: NextConfig = {
 	/* config options here */
 	reactStrictMode: true,
+	output: 'export',
+	images: {
+		unoptimized: true,
+	},
 	webpack: (config, { dev }) => {
 		config.module.rules.push({
 			test: /\.svg$/,

@@ -1,24 +1,24 @@
 {
-    "name": "react-bootstrap-pack",
-    "private": true,
-    "scripts": {
-        "build": "turbo build",
-        "dev": "turbo dev",
-        "lint": "turbo lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "restart-ui": "pnpm --filter @repo/restart-ui",
-        "docu": "pnpm --filter docs"
-    },
-    "devDependencies": {
-        "@repo/prettier-config": "workspace:*",
-        "eslint": "^9.15.0",
-        "prettier": "^3.3.3",
-        "turbo": "^2.3.3",
-        "typescript": "5.5.4"
-    },
-    "packageManager": "pnpm@9.0.0",
-    "engines": {
-        "node": ">=18"
-    },
-    "prettier": "@repo/prettier-config"
+	"name": "react-bootstrap-pack",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"restart-ui": "pnpm --filter @repo/restart-ui",
+		"restart-hooks": "pnpm --filter @repo/restart-hooks",
+		"docu": "pnpm --filter docs"
+	},
+	"devDependencies": {
+		"@repo/prettier-config": "workspace:*",
+		"eslint": "^9.15.0",
+		"prettier": "^3.3.3",
+		"turbo": "^2.3.3",
+		"typescript": "5.5.4"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"prettier": "@repo/prettier-config"
 }

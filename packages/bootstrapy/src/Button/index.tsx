@@ -6,11 +6,13 @@ import type { BsPrefixProps, ButtonVariant } from '../types'
 
 export { ButtonGroup, type ButtonGroupProps } from './ButtonGroup'
 
-export interface ButtonProps extends BaseButtonProps, Omit<BsPrefixProps, 'as'> {
+export interface ButtonProps<T extends HTMLElement = HTMLButtonElement>
+	extends BaseButtonProps<T>,
+		Omit<BsPrefixProps, 'as'> {
 	active?: boolean
 	variant?: ButtonVariant
 	size?: 'sm' | 'lg'
-	ref?: React.Ref<HTMLButtonElement>
+	ref?: React.Ref<T>
 }
 
 export type CommonButtonProps = 'href' | 'size' | 'variant' | 'disabled'

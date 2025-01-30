@@ -3,7 +3,7 @@
 import { Button, type ButtonProps } from '@repo/restart-ui/Button'
 import clsx from 'clsx'
 
-export const StyledButton = (props: ButtonProps<keyof React.JSX.IntrinsicElements>) => {
+export const StyledButton = (props: ButtonProps<HTMLButtonElement>) => {
 	return (
 		<Button
 			{...props}
