@@ -39,6 +39,7 @@
 	"scripts": {
 		"build": "tsup",
 		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
+		"clean": "pnpm dlx rimraf dist",
 		"directive": "node ./addUseClient.js"
 	},
 	"keywords": [],
@@ -60,8 +61,8 @@
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.10",
-		"@types/react": "^19.0.3",
-		"@types/react-dom": "^19.0.2",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"@types/warning": "^3.0.3",
 		"eslint": "^9.15.0",
 		"globals": "^15.12.0",
@@ -72,11 +73,11 @@
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.15.0"
 	},
+	"prettier": "@repo/prettier-config",
 	"peerDependencies": {
-		"@types/react": "^19.0.3",
-		"@types/react-dom": "^19.0.2",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
-	},
-	"prettier": "@repo/prettier-config"
+	}
 }

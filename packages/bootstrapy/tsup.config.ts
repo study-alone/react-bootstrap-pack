@@ -24,7 +24,7 @@ const baseConfig = ({ outDir, format, dts = false }: CustomOptions): Options => 
 
 const styleConfig = (): Options => ({
 	entry: ['src/scss/bootstrap.scss'],
-	clean: true,
+	// clean: true,
 	esbuildPlugins: [
 		{
 			name: 'scss',

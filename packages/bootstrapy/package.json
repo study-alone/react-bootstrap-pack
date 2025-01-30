@@ -10,7 +10,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
-		"build": "tsup"
+		"build": "tsup",
+		"clean": "pnpm dlx rimraf dist"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,8 +21,8 @@
 		"@repo/prettier-config": "workspace:^",
 		"@repo/typescript-config": "workspace:^",
 		"@types/holderjs": "^2.9.4",
-		"@types/react": "^19.0.3",
-		"@types/react-dom": "^19.0.2",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"@types/warning": "^3.0.3",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8",
@@ -41,8 +42,8 @@
 		"warning": "^4.0.3"
 	},
 	"peerDependencies": {
-		"@types/react": "^19.0.3",
-		"@types/react-dom": "^19.0.2",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	}

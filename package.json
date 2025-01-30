@@ -5,9 +5,11 @@
 		"build": "turbo build",
 		"dev": "turbo dev",
 		"lint": "turbo lint",
+		"clean": "turbo clean",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"restart-ui": "pnpm --filter @repo/restart-ui",
 		"restart-hooks": "pnpm --filter @repo/restart-hooks",
+		"rtg": "pnpm --filter @repo/react-transition-group",
 		"docu": "pnpm --filter docs"
 	},
 	"devDependencies": {
@@ -20,5 +22,6 @@
 	"engines": {
 		"node": ">=18"
 	},
-	"prettier": "@repo/prettier-config"
+	"prettier": "@repo/prettier-config",
+	"packageManager": "pnpm@10.1.0"
 }

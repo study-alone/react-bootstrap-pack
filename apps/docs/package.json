@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"clean": "rm -rf .next",
+		"clean": "pnpm dlx rimraf .next out",
 		"build-bs-css": "postcss ./node_modules/@repo/bootstrapy/dist/bootstrap.css -o ./public/bootstrap-scoped.css"
 	},
 	"dependencies": {
@@ -32,8 +32,8 @@
 		"@svgr/webpack": "^8.1.0",
 		"@tailwindcss/postcss": "4.0.0",
 		"@types/node": "^20",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9",
 		"eslint-config-next": "15.1.5",
