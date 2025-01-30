@@ -6,5 +6,10 @@
         {
             "path": "apps/*"
         }
-    ]
+    ],
+    "settings": {
+        "files.associations": {
+            "apps/docs/**/*.mdx": "mdx"
+        }
+    }
 }
