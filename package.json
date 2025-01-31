@@ -21,7 +21,7 @@
 	},
 	"engines": {
 		"node": ">=18",
-		"pnpm": ">=10"
+		"pnpm": ">=9"
 	},
 	"prettier": "@repo/prettier-config",
 	"packageManager": "pnpm@10.1.0"
