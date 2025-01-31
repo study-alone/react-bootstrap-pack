@@ -15,14 +15,14 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsup",
 		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
-		"clean": "pnpm dlx rimraf dist"
+		"clean": "pnpm dlx rimraf dist .turbo"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"@repo/prettier-config": "workspace:^",
-		"@repo/typescript-config": "workspace:^",
+		"@repo/prettier-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
 		"react": "^19.0.0",
@@ -31,7 +31,7 @@
 	},
 	"prettier": "@repo/prettier-config",
 	"dependencies": {
-		"@repo/dom-helper": "workspace:^"
+		"@repo/dom-helper": "workspace:*"
 	},
 	"peerDependencies": {
 		"@types/react": "^19.0.8",

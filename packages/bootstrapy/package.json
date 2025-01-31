@@ -11,15 +11,15 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
 		"build": "tsup",
-		"clean": "pnpm dlx rimraf dist"
+		"clean": "pnpm dlx rimraf dist .turbo"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"@repo/eslint-config": "workspace:^",
-		"@repo/prettier-config": "workspace:^",
-		"@repo/typescript-config": "workspace:^",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/prettier-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
 		"@types/holderjs": "^2.9.4",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
@@ -32,10 +32,10 @@
 		"tsup": "^8.3.5"
 	},
 	"dependencies": {
-		"@repo/dom-helper": "workspace:^",
-		"@repo/react-transition-group": "workspace:^",
-		"@repo/restart-hooks": "workspace:^",
-		"@repo/restart-ui": "workspace:^",
+		"@repo/dom-helper": "workspace:*",
+		"@repo/react-transition-group": "workspace:*",
+		"@repo/restart-hooks": "workspace:*",
+		"@repo/restart-ui": "workspace:*",
 		"clsx": "^2.1.1",
 		"holderjs": "^2.9.9",
 		"uncontrollable": "^9.0.0",

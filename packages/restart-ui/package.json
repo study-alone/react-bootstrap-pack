@@ -39,7 +39,7 @@
 	"scripts": {
 		"build": "tsup",
 		"lint": "eslint ./src --report-unused-disable-directives --max-warnings 0",
-		"clean": "pnpm dlx rimraf dist",
+		"clean": "pnpm dlx rimraf dist .turbo",
 		"directive": "node ./addUseClient.js"
 	},
 	"keywords": [],
@@ -48,18 +48,18 @@
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
 		"@react-aria/ssr": "^3.9.7",
-		"@repo/dom-helper": "workspace:^",
-		"@repo/eslint-config": "workspace:^",
-		"@repo/prettier-config": "workspace:^",
-		"@repo/react-transition-group": "workspace:^",
-		"@repo/restart-hooks": "workspace:^",
-		"@repo/typescript-config": "workspace:^",
+		"@repo/dom-helper": "workspace:*",
+		"@repo/react-transition-group": "workspace:*",
+		"@repo/restart-hooks": "workspace:*",
 		"clsx": "^2.1.1",
 		"dequal": "^2.0.3",
 		"uncontrollable": "^9.0.0",
 		"warning": "^4.0.3"
 	},
 	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/prettier-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
 		"@types/node": "^22.10.10",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
