@@ -20,7 +20,8 @@
 		"typescript": "5.5.4"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=18",
+		"pnpm": ">=10"
 	},
 	"prettier": "@repo/prettier-config",
 	"packageManager": "pnpm@10.1.0"

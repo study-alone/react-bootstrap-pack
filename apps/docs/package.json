@@ -8,7 +8,8 @@
 		"start": "next start",
 		"lint": "next lint",
 		"clean": "pnpm dlx rimraf .next out",
-		"build-bs-css": "postcss ./node_modules/@repo/bootstrapy/dist/bootstrap.css -o ./public/bootstrap-scoped.css"
+		"build-bs-css": "postcss ./node_modules/@repo/bootstrapy/dist/bootstrap.css -o ./public/bootstrap-scoped.css",
+		"build-with-deps": "turbo run build --filter=docs..."
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.2.0",
