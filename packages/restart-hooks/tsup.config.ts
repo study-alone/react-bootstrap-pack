@@ -17,6 +17,10 @@ const baseConfig = ({ outDir, format, dts = false }: CustomOptions): Options => 
 	splitting: true,
 	cjsInterop: true,
 	sourcemap: true,
+	// silent: true,
+	// esbuildOptions: (options) => {
+	// 	options.logLevel = 'silent'
+	// },
 })
 
 export default defineConfig([

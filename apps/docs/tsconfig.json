@@ -1,6 +1,7 @@
 {
     "extends": "@repo/typescript-config/nextjs.json",
     "compilerOptions": {
+        "traceResolution": false,
         "target": "ES2022",
         "incremental": true,
         "lib": [

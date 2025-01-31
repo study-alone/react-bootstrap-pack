@@ -5,8 +5,15 @@
         "allowImportingTsExtensions": false,
         "baseUrl": ".",
         "moduleResolution": "bundler",
-        "module":"ES2022",
+        "module": "ES2022",
+        "traceResolution": false
     },
-    "include": ["src/**/*", "./eslint.config.mjs", "./tsup.config.ts"],
-    "exclude": ["node_modules"]
+    "include": [
+        "src/**/*",
+        "./eslint.config.mjs",
+        "./tsup.config.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
