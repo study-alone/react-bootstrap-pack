@@ -166,18 +166,6 @@ export const Overlay = ({
 		}),
 	)
 
-	console.log('usePopper refs', { target, rootElement })
-
-	console.log('usePopper options', {
-		placement,
-		enableEvents: !!restProps.show,
-		containerPadding: containerPadding || 5,
-		flip,
-		offset,
-		arrowElement,
-		popperConfig,
-	})
-
 	const handleHidden: TransitionCallbacks['onExited'] = () => {
 		setExited(true)
 

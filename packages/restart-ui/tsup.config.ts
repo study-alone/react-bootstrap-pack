@@ -12,6 +12,7 @@ type CustomOptions = {
 
 const esbuildOptions: Options['esbuildOptions'] = (options) => {
 	options.plugins = [
+		...(options.plugins ?? []),
 		{
 			name: 'add-use-client-directive',
 			setup(build) {
@@ -27,6 +28,7 @@ const esbuildOptions: Options['esbuildOptions'] = (options) => {
 			},
 		},
 	]
+	options.drop = [...(options.drop ?? []), 'console']
 }
 
 const baseConfig = ({ outDir, format, dts = false, onSuccess }: CustomOptions): Options => ({
