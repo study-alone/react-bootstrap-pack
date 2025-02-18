@@ -1,36 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monorepo for react-bootstrap
 
-## Getting Started
+bootstrap을 내가 생각하는 문법으로 다시 만들어 보다가 react-bootstrap도 다시만들어 봤다.
+현재는 `Nextra`를 이용한 문서화 작업을 하는 중이다.
 
-First, run the development server:
+## 발견된 문제점
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### `remark-emoji` 사용
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+mdx에서 emoji를 사용하기 위해 `remark-emoji`를 `next.config.ts`에 반영했으나  
+`ERR_PACKAGE_PATH_NOT_EXPORTED` 에러가 발생!
+원인은 ts는 컴파일 후 commonjs 방식으로 작동하는데 `remark-emoji`는 ESM방식만 지원하여 문제가 생겼다.
+`next.config.(mjs|mts)`는 정상 적으로 동작한다. 다만 `mts` 확장자는 "experimental"이라 사용시 주의가 필요하다.
