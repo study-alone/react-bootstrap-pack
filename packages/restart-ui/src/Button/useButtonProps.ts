@@ -41,7 +41,7 @@ export function useButtonProps({
 	target,
 	rel,
 	role,
-	onClick,
+	onClick = () => {},
 	tabIndex = 0,
 	type,
 }: UseButtonPropsOptions): [AriaButtonProps, UseButtonPropsMetadata] {
@@ -68,7 +68,7 @@ export function useButtonProps({
 			return
 		}
 
-		onClick?.(event)
+		onClick(event)
 	}
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
