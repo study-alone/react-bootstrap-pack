@@ -1,5 +1,145 @@
-import { DropdownExample } from './dropdown-example'
+import { DropdownExample } from './DropdownExample'
+import { DropdownDefault } from './DropdownDefault'
+import { LiveCode } from '@/components/LiveCode'
+import { Tabs } from 'nextra/components'
 
 # Dropdown
 
-<DropdownExample />
+`Dropdown`은 outside click, 키보드 탐색, focus 처리 기능을 갖춘 컴포넌트입니다. 접근성을 보장하기 위한 component set입니다. Dropdown은 3개의 기본 컴포넌트로 구성되며, Dropdown을 구현할 때 이를 조합하여 개발자가 직접 작성해야합니다.
+
+- **`Dropdown`**: menu와 toggle을 래핑하고 키보드 탐색을 처리합니다.
+- **`DropdownExample.Toggle`**: 일반적으로 매뉴를 펼치는 버튼을 말합니다.
+- **`DropdownExample.Menu`**: PopperJS를 이용해 toggle에 배치된 overlay 메뉴입니다.
+
+<LiveCode
+	code={`<DropdownExample />`}
+	scope={{ DropdownExample }}
+	onlyPreview
+	title="Basic button"
+/>
+
+```tsx filename="Dropdown"
+import { useLayoutEffect, useState } from 'react'
+import {
+	useDropdownToggle,
+	useDropdownMenu,
+	Dropdown,
+	type DropdownProps,
+} from '@repo/restart-ui/Dropdown'
+import clsx from 'clsx'
+import { Button } from '@/components/restart-ui-example/Button'
+
+const DropdownMenuItem = ({ title }: { title: string }) => {
+	return (
+		<Dropdown.Item className="text-left hover:bg-primary-100 px-6 py-2 focus:ring-2 focus:outline-none">
+			{title}
+		</Dropdown.Item>
+	)
+}
+
+const DropdownMenu = ({ role }: { role: React.AriaRole }) => {
+	const [props, { toggle, show, popper }] = useDropdownMenu<HTMLDivElement>({
+		flip: true,
+		offset: [0, 8],
+	})
+
+	useLayoutEffect(() => {
+		if (show) {
+			popper?.update()
+		}
+	}, [show])
+
+	return (
+		<div
+			{...props}
+			role={role}
+			className={clsx(
+				show ? 'flex' : 'hidden',
+				'w-48 py-2 flex-col shadow-lg border-gray-200 border bg-white z-10 rounded',
+			)}
+		>
+			{['Item 1', 'Item 2'].map((item) => (
+				<DropdownMenuItem key={item} title={item} />
+			))}
+		</div>
+	)
+}
+
+const DropdownToggle = ({ children }: { children: React.ReactNode }) => {
+	const [props, { show, toggle }] = useDropdownToggle<HTMLButtonElement>()
+
+	return (
+		<Button {...props} className="caret">
+			{children}
+		</Button>
+	)
+}
+
+interface DropdownButtonProps {
+	show?: boolean
+	onToggle: DropdownProps['onToggle']
+	title?: string
+	role: React.AriaRole
+}
+
+const DropdownButton = ({ show, onToggle, title, role }: DropdownButtonProps) => (
+	<Dropdown show={show} onToggle={onToggle}>
+		<span>
+			<DropdownToggle>{title}</DropdownToggle>
+			<DropdownMenu role={role} />
+		</span>
+	</Dropdown>
+)
+
+export const DropdownExample = () => {
+	const [show, setShow] = useState(false)
+
+	return (
+		<div className="flex justify-center space-x-5 text-purple-500">
+			<DropdownButton
+				show={show}
+				onToggle={(nextShow) => setShow(nextShow)}
+				title={`${show ? 'Close' : 'Open'} Dropdown`}
+				role="menu"
+			/>
+		</div>
+	)
+}
+```
+
+## Components
+
+Dropdown은 래핑하는 Dropdown 컴포넌트, 보여질 메뉴를 트리거하는 ToggleEvent, Menu, MenuItem으로 구성됩니다.
+
+### Dropdown
+
+`Dropdown` 컴포넌트는 렌더링될 UI요소가 없는 Container/Provider 격인 컴포넌트 입니다. 메뉴 토글, 키보드 탐색 및 포커스 관리를 처리합니다.
+
+<LiveCode
+	code={`<DropdownDefault />`}
+	scope={{ DropdownDefault }}
+	onlyPreview
+	title="Basic button"
+/>
+
+```tsx filename="Dropdown"
+import { Dropdown } from '@repo/restart-ui'
+
+const ExampleComponent = () => {
+	return (
+		<Dropdown placement="top-start">
+			<span>This is Toggle!</span>
+		</Dropdown>
+	)
+}
+```
+
+### Toggle
+
+`Toggle`은 드롭다운 메뉴를 여는 interative 요소(일반적으로 버튼)입니다. Toggle props에는 유효한 DOM요소에 전달해야하는 `ref`가 포함되어 있습니다.
+
+<Tabs items={['pnpm', 'npm', 'yarn']}>
+	<Tabs.Tab>**pnpm**: Fast, disk space efficient package manager.</Tabs.Tab>
+	<Tabs.Tab>**npm** is a package manager for the JavaScript programming language.</Tabs.Tab>
+	<Tabs.Tab>**Yarn** is a software packaging system.</Tabs.Tab>
+</Tabs>
