@@ -139,6 +139,7 @@ export const Overlay = ({
 	popperConfig = {},
 	transition: Transition,
 	runTransition,
+	onHide = () => {},
 	ref,
 	...restProps
 }: OverlayProps) => {
@@ -177,7 +178,7 @@ export const Overlay = ({
 	// 오버레이가 전환되는 동안 렌더링을 취소하지 마세요.
 	const mountOverlay = restProps.show || !exited
 
-	useRootClose(rootElement, restProps.onHide!, {
+	useRootClose(rootElement, onHide, {
 		disabled: !restProps.rootClose || restProps.rootCloseDisabled,
 		clickTrigger: restProps.rootCloseEvent,
 	})
