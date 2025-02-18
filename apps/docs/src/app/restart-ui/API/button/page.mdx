@@ -2,6 +2,7 @@ import { Button } from '@repo/restart-ui'
 import { LiveCode } from '@/components/LiveCode'
 import { Callout } from 'nextra/components'
 import { StyledButton } from './styled-button'
+import { Table } from 'nextra/components'
 
 # Button
 
@@ -41,8 +42,9 @@ import { StyledButton } from './styled-button'
 
 ## useButtonProps
 
-해당 hook을 이용해 사용자가 원하는 `Button`을 만들 수 있습니다.
+해당 hook을 이용해 사용자가 원하는 `Button` props을 만들 수 있습니다.
 명식적인 tagName을 제공하지 않으면 `href` 속성 여부에 따라 `a` 또는 `button`으로 판단하여 렌더링 합니다.
+return되는 값은 tuple이며 `[Aria, Metadata]` 형태입니다.
 
 ```tsx filenmae="using useButtonProps"
 import { useButtonProps } from '@repo/restart-ui/Button/useButtonProps'
@@ -58,6 +60,27 @@ const CompanyButton = (props) => {
     <CompanyButton href="/home">I'm a link</CompanyButton>
 </div>
 ```
+
+### Return - Aria
+
+|                 |     |                                                                 |                                                           |                                                                                                               |
+| --------------- | :-: | --------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `type`          | :x: | `'button' \| 'reset' \| 'submit'{:ts}`                          | tagName이 "button"인 경우에는 `button`이 기본값이 됩니다. | tagName이 botton인 경우에만 지정될 수 있고 다른 TagName인 경우 무시됩니다.                                    |
+| `disabled`      | :x: | `boolean{:ts}`                                                  | `undefined`                                               | 비활성화 여부                                                                                                 |
+| `role`          | :x: | `React.ArialRole{:ts}`                                          | `undefined`                                               | WAI-ARIA에 따른 role 속성                                                                                     |
+| `tabIndex`      | :x: | `number{:ts}`                                                   | `undefined`                                               | HTML의 [tabindex](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/tabindex) 규칙을 따릅니다. |
+| `href`          | :x: | `string{:ts}`                                                   | `undefined`                                               | 이동할 URL을 의미(값이 있는 경우 `<a />`태그로 적용)                                                          |
+| `target`        | :x: | `string{:ts}`                                                   | `undefined`                                               | 이동할 때의 target.                                                                                           |
+| `rel`           | :x: | `string{:ts}`                                                   | `undefined`                                               | 현재문서와 링크와의 관계를 명시. [참조](https://developer.mozilla.org/ko/docs/Web/HTML/Attributes/rel)        |
+| `aria-disabled` | :x: | `true{:ts}`                                                     | `undefined`                                               | WAI-ARIA의 disable 상태를 지정                                                                                |
+| `onClick`       | :x: | `(event: React.MouseEvent \| React.KeyboardEvent) => void{:ts}` | `undefined`                                               | click callback                                                                                                |
+| `onKeyDown`     | :x: | `(event: React.KeyboardEvent) => void{:ts}`                     | `undefined`                                               | keydown callback                                                                                              |
+
+### Return - Metadata
+
+|         |     |                                                         |             |                          |
+| ------- | :-: | ------------------------------------------------------- | ----------- | ------------------------ |
+| tagName | :x: | `React.ElementType \| keyof HTMLElementTagNameMap{:ts}` | `undefined` | 유효한 HTML tag명을 지정 |
 
 ## Styling
 
@@ -100,3 +123,9 @@ const StyledButton = (props) => {
 	onlyPreview
 	title="Basic button"
 />
+
+## Props
+
+아래 테이블은 Props에 대한 설명 표입니다.
+
+### useButtonProps
