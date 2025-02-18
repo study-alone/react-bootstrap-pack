@@ -23,7 +23,8 @@
 		"prism-react-renderer": "^2.4.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"react-live": "^4.1.8"
+		"react-live": "^4.1.8",
+		"remark-emoji": "^5.0.1"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
