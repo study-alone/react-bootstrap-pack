@@ -1,19 +1,4 @@
+@config '../../tailwind.config.ts';
+/* @import 'nextra-theme-docs/style-prefixed.css' layer('nextra'); */
 @import 'tailwindcss';
-
-/* :root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
-
-body {
-	color: var(--foreground);
-	background: var(--background);
-	font-family: Arial, Helvetica, sans-serif;
-} */
+@import 'nextra-theme-docs/style.css';

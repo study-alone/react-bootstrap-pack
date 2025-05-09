@@ -54,6 +54,7 @@ export function useButtonProps({
 	}
 
 	const meta: UseButtonPropsMetadata = { tagName }
+
 	if (tagName === 'button') {
 		return [{ type: type || 'button', disabled }, meta]
 	}

@@ -10,7 +10,7 @@
 		"restart-ui": "pnpm --filter @repo/restart-ui",
 		"restart-hooks": "pnpm --filter @repo/restart-hooks",
 		"rtg": "pnpm --filter @repo/react-transition-group",
-		"docu": "pnpm --filter docs"
+		"document": "pnpm --filter docs"
 	},
 	"devDependencies": {
 		"@repo/prettier-config": "workspace:*",
@@ -24,5 +24,5 @@
 		"pnpm": ">=9"
 	},
 	"prettier": "@repo/prettier-config",
-	"packageManager": "pnpm@10.1.0"
+	"packageManager": "pnpm@10.8.0"
 }

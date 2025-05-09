@@ -1,7 +1,11 @@
 import { DropdownExample } from './DropdownExample'
 import { DropdownDefault } from './DropdownDefault'
+import { DropdownToggle } from './DropdownToggle'
+import { CustomDropdownToggle } from './CustomDropdownToggle'
 import { LiveCode } from '@/components/LiveCode'
 import { Tabs } from 'nextra/components'
+
+import { Button } from '@/components/restart-ui-example/Button'
 
 # Dropdown
 
@@ -115,12 +119,7 @@ Dropdown은 래핑하는 Dropdown 컴포넌트, 보여질 메뉴를 트리거하
 
 `Dropdown` 컴포넌트는 렌더링될 UI요소가 없는 Container/Provider 격인 컴포넌트 입니다. 메뉴 토글, 키보드 탐색 및 포커스 관리를 처리합니다.
 
-<LiveCode
-	code={`<DropdownDefault />`}
-	scope={{ DropdownDefault }}
-	onlyPreview
-	title="Basic button"
-/>
+<LiveCode code={`<DropdownDefault />`} scope={{ DropdownDefault }} onlyPreview title="Dropdown" />
 
 ```tsx filename="Dropdown"
 import { Dropdown } from '@repo/restart-ui'
@@ -138,8 +137,61 @@ const ExampleComponent = () => {
 
 `Toggle`은 드롭다운 메뉴를 여는 interative 요소(일반적으로 버튼)입니다. Toggle props에는 유효한 DOM요소에 전달해야하는 `ref`가 포함되어 있습니다.
 
-<Tabs items={['pnpm', 'npm', 'yarn']}>
-	<Tabs.Tab>**pnpm**: Fast, disk space efficient package manager.</Tabs.Tab>
-	<Tabs.Tab>**npm** is a package manager for the JavaScript programming language.</Tabs.Tab>
-	<Tabs.Tab>**Yarn** is a software packaging system.</Tabs.Tab>
+<Tabs items={['useDropdown', 'DropdonwMenu']}>
+	<Tabs.Tab>
+```tsx filename="using useDropdownToggle"
+import { useDropdownMenu } from '@repo/restart-ui'
+
+export const DropdownToggle = () => {
+	const [menuProps, meta] = useDropdownMenu<HTMLUListElement>({
+		flip: true,
+		offset: [0, 8],
+	})
+
+    return (
+    	<ul
+    		{...menuProps}
+    		style={{
+    			visibility: meta.show ? 'visible' : 'hidden',
+    		}}
+    	/>
+    )
+
+}
+
+````
+	</Tabs.Tab>
+	<Tabs.Tab>
+```tsx live filename="using DropdownMenu component"
+'use client'
+
+import { Dropdown } from '@repo/restart-ui'
+
+export const CustomDropdownToggle = () => {
+	return (
+		<Dropdown.Menu flip offset={[0, 8]}>
+			{({ ref, ...menuProps }, meta) => (
+				<ul
+					ref={(node) => {
+						if (typeof ref === 'function') ref(node)
+					}}
+					{...menuProps}
+					style={{
+						visibility: meta.show ? 'visible' : 'hidden',
+					}}
+				/>
+			)}
+		</Dropdown.Menu>
+	)
+}
+````
+
+    </Tabs.Tab>
+
 </Tabs>
+
+### show/hide 구현
+
+PopperJS는 Menu 요소를 측정해야 하므로 Menu를 `opacity: 0, visibility: hidden`으로 스타일링하는 것이 좋습니다(표시되지 않을 때). 이렇게 하면 Popper가 Menu가 표시되지 않을 때에도 Menu의 올바른 오프셋을 계산할 수 있습니다. 또한 원하는 경우 애니메이션을 적용하기가 조금 더 간단해집니다.
+
+transition을 적용할 때는 `visibility`, `opacity`를 같이 사용하는 것이 좋습니다. `visibility: hidden`으로 설정하면 메뉴가 키보드 탭 순서에서 제거되어 transition이 적용되지 않으므로 `opacity`를 추가로 적용하여 fade in/out을 구현하여 사용하면 됩니다.

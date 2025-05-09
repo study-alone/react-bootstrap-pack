@@ -8,7 +8,7 @@ import { Table } from 'nextra/components'
 
 추상화된 `Button` 컴포넌트입니다. button이 아닌 HTML요소를 Button으로 활용할 수도 있습니다.
 
-```tsx filename="Basic button"
+```tsx live=true filename="Basic button"
 <Button>I'm a Button</Button>
 ```
 
@@ -30,7 +30,8 @@ import { Table } from 'nextra/components'
 ```
 
 <LiveCode
-	code={`<div className="space-x-4">
+	code={`
+<div className="space-x-4">
 	<Button>I'm a Button</Button>
 	<Button href="/home">I'm a link</Button>
 	<Button as="span">I'm a span but also a button</Button>
@@ -63,18 +64,23 @@ const CompanyButton = (props) => {
 
 ### Return - Aria
 
-|                 |     |                                                                 |                                                           |                                                                                                               |
-| --------------- | :-: | --------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `type`          | :x: | `'button' \| 'reset' \| 'submit'{:ts}`                          | tagName이 "button"인 경우에는 `button`이 기본값이 됩니다. | tagName이 botton인 경우에만 지정될 수 있고 다른 TagName인 경우 무시됩니다.                                    |
-| `disabled`      | :x: | `boolean{:ts}`                                                  | `undefined`                                               | 비활성화 여부                                                                                                 |
-| `role`          | :x: | `React.ArialRole{:ts}`                                          | `undefined`                                               | WAI-ARIA에 따른 role 속성                                                                                     |
-| `tabIndex`      | :x: | `number{:ts}`                                                   | `undefined`                                               | HTML의 [tabindex](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/tabindex) 규칙을 따릅니다. |
-| `href`          | :x: | `string{:ts}`                                                   | `undefined`                                               | 이동할 URL을 의미(값이 있는 경우 `<a />`태그로 적용)                                                          |
-| `target`        | :x: | `string{:ts}`                                                   | `undefined`                                               | 이동할 때의 target.                                                                                           |
-| `rel`           | :x: | `string{:ts}`                                                   | `undefined`                                               | 현재문서와 링크와의 관계를 명시. [참조](https://developer.mozilla.org/ko/docs/Web/HTML/Attributes/rel)        |
-| `aria-disabled` | :x: | `true{:ts}`                                                     | `undefined`                                               | WAI-ARIA의 disable 상태를 지정                                                                                |
-| `onClick`       | :x: | `(event: React.MouseEvent \| React.KeyboardEvent) => void{:ts}` | `undefined`                                               | click callback                                                                                                |
-| `onKeyDown`     | :x: | `(event: React.KeyboardEvent) => void{:ts}`                     | `undefined`                                               | keydown callback                                                                                              |
+`tagName`이 'button'인 경우
+
+|        |                    |                                        |                                                           |                                                                            |
+| ------ | :----------------: | -------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `type` | :white_check_mark: | `'button' \| 'reset' \| 'submit'{:ts}` | tagName이 "button"인 경우에는 `button`이 기본값이 됩니다. | tagName이 botton인 경우에만 지정될 수 있고 다른 TagName인 경우 무시됩니다. |
+
+|                 |     |                                                                 |             |                                                                                                               |
+| --------------- | :-: | --------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
+| `disabled`      | :x: | `boolean{:ts}`                                                  | `undefined` | 비활성화 여부                                                                                                 |
+| `role`          | :x: | `React.ArialRole{:ts}`                                          | `button`    | WAI-ARIA에 따른 role 속성                                                                                     |
+| `tabIndex`      | :x: | `number{:ts}`                                                   | `undefined` | HTML의 [tabindex](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/tabindex) 규칙을 따릅니다. |
+| `href`          | :x: | `string{:ts}`                                                   | `undefined` | 이동할 URL을 의미(값이 있는 경우 `<a />`태그로 적용)                                                          |
+| `target`        | :x: | `string{:ts}`                                                   | `undefined` | 이동할 때의 target.                                                                                           |
+| `rel`           | :x: | `string{:ts}`                                                   | `undefined` | 현재문서와 링크와의 관계를 명시. [참조](https://developer.mozilla.org/ko/docs/Web/HTML/Attributes/rel)        |
+| `aria-disabled` | :x: | `true{:ts}`                                                     | `undefined` | WAI-ARIA의 disable 상태를 지정                                                                                |
+| `onClick`       | :x: | `(event: React.MouseEvent \| React.KeyboardEvent) => void{:ts}` | `undefined` | click callback                                                                                                |
+| `onKeyDown`     | :x: | `(event: React.KeyboardEvent) => void{:ts}`                     | `undefined` | keydown callback                                                                                              |
 
 ### Return - Metadata
 
@@ -129,3 +135,8 @@ const StyledButton = (props) => {
 아래 테이블은 Props에 대한 설명 표입니다.
 
 ### useButtonProps
+
+`tagName`이 'button'인 경우
+| | |
+|---|---|
+|type | |

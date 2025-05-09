@@ -8,6 +8,7 @@ import clsx from 'clsx'
 // import holderjs from 'holderjs'
 // import { Stack } from '@/bootstrap/layout/Stack'
 import { Button } from '@repo/restart-ui'
+import { Pre } from 'nextra/components'
 
 interface LiveCodeProps {
 	code: string

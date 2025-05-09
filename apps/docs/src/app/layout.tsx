@@ -3,9 +3,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import LogoSVG from '../../public/logo.svg'
-// import 'nextra-theme-docs/style-prefixed.css'
 import './globals.css'
-import 'nextra-theme-docs/style.css'
 
 export const metadata = {
 	metadataBase: new URL('https://nextra.site'),
@@ -33,26 +31,6 @@ type Props = {
 }
 
 export default async function RootLayout({ children }: Props) {
-	const navbar = (
-		<Navbar
-			logo={
-				<div className="w-[78px]">
-					{/* <img src="/logo.svg" alt="logo" /> */}
-					<LogoSVG
-						fill="currentColor"
-						width="auto"
-						height="auto"
-						viewBox="0 0 1200 427"
-					/>
-				</div>
-			}
-			// Next.js discord server
-			chatLink="https://discord.gg/hEM84NMkRv"
-		/>
-	)
-
-	const pageMap = await getPageMap()
-
 	return (
 		<html lang="en" dir="ltr" suppressHydrationWarning>
 			<Head faviconGlyph="✦">
@@ -61,7 +39,23 @@ export default async function RootLayout({ children }: Props) {
 			<body>
 				<Layout
 					// banner={<Banner storageKey="Nextra 2">Nextra 2 Alpha</Banner>}
-					navbar={navbar}
+					navbar={
+						<Navbar
+							logo={
+								<div className="w-[78px]">
+									{/* <img src="/logo.svg" alt="logo" /> */}
+									<LogoSVG
+										fill="currentColor"
+										width="100%"
+										height="100%"
+										viewBox="0 0 1200 427"
+									/>
+								</div>
+							}
+							// Next.js discord server
+							chatLink="https://discord.gg/hEM84NMkRv"
+						/>
+					}
 					footer={<Footer />}
 					editLink="Edit this page on GitHub"
 					docsRepositoryBase="https://github.com/shuding/nextra/blob/main/examples/docs"

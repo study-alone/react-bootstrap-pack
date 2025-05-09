@@ -1,12 +1,14 @@
-import { useContext, useRef } from 'react'
+import { useRef } from 'react'
 import { useCallbackRef } from '@repo/restart-hooks'
 import { useClickOutside } from '../useClickOutside'
 import { mergeOptionsWithPopperConfig } from '../mergeOptionsWithPopperConfig'
 import { usePopper } from '../usePopper'
-import { DropdownContext } from './DropdownContext'
+import { useDropdownContext } from './DropdownContext'
 import type { DropdownContextValue } from './DropdownContext'
 import type { UsePopperOptions, Placement, Offset, UsePopperState } from '../usePopper'
 import type { ClickOutsideOptions } from '../useClickOutside'
+
+type SomeHTMLElement = HTMLElementTagNameMap[keyof HTMLElementTagNameMap]
 
 export interface UseDropdownMenuOptions {
 	/**
@@ -99,10 +101,10 @@ const noop = () => {}
  * @param {string}  options.rootCloseEvent 닫기를 트리거하기 위해 메뉴 "외부 클릭"을 결정할 때 수신하는 포인터 이벤트입니다.
  * @param {object}  options.popperConfig Options passed to the [`usePopper`](/api/usePopper) hook.
  */
-export function useDropdownMenu<E extends HTMLElement = HTMLElement>(
+export function useDropdownMenu<E extends HTMLElement = SomeHTMLElement>(
 	options: UseDropdownMenuOptions = {},
 ) {
-	const context = useContext(DropdownContext)
+	const context = useDropdownContext<E>()
 	const [arrowElement, attachArrowRef] = useCallbackRef<Element>()
 	const hasShownRef = useRef(false)
 
@@ -175,7 +177,7 @@ export function useDropdownMenu<E extends HTMLElement = HTMLElement>(
 	return [menuProps, metadata] as const
 }
 
-export interface DropdownMenuProps extends UseDropdownMenuOptions {
+export interface DropdownMenuProps<E extends HTMLElement> extends UseDropdownMenuOptions {
 	/**
 	 * A render prop that returns a Menu element. The `props`
 	 * argument should be spread through to **a component that can accept a ref**.
@@ -197,18 +199,18 @@ export interface DropdownMenuProps extends UseDropdownMenuOptions {
 	 *   },
 	 * }) => React.Element}
 	 */
-	children: (props: UserDropdownMenuProps, meta: UseDropdownMenuMetadata) => React.ReactNode
+	children: (props: UserDropdownMenuProps<E>, meta: UseDropdownMenuMetadata) => React.ReactNode
 }
 
 /**
  * Also exported as `<Dropdown.Menu>` from `Dropdown`.
  */
-export const DropdownMenu = ({
+export const DropdownMenu = <E extends HTMLElement>({
 	children,
 	usePopper: usePopperProp = true,
 	...options
-}: DropdownMenuProps) => {
-	const [props, meta] = useDropdownMenu({
+}: DropdownMenuProps<E>) => {
+	const [props, meta] = useDropdownMenu<E>({
 		...options,
 		usePopper: usePopperProp,
 	})

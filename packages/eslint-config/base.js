@@ -77,10 +77,7 @@ export const config = ({ project, tsconfigRootDir }) => {
 				'turbo/no-undeclared-env-vars': 'warn',
 				// 'react-refresh/only-export-components': 'warn',
 				'@typescript-eslint/no-unused-vars': 'warn',
-				'@typescript-eslint/no-misused-promises': [
-					'error',
-					{ checksVoidReturn: false },
-				],
+				'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
 				'react/button-has-type': 'error',
 				'react/prop-types': 'off',
 				'react/self-closing-comp': [
@@ -137,10 +134,5 @@ export const config = ({ project, tsconfigRootDir }) => {
 				],
 			},
 		},
-		// {
-		// 	plugins: {
-		// 		onlyWarn,
-		// 	},
-		// },
 	]
 }

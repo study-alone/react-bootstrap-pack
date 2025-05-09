@@ -1,7 +1,22 @@
 // @ts-nocheck
 import { useMDXComponents as getDocsMDXComponents } from 'nextra-theme-docs'
 
-const { tr: Tr, th: Th, table: Table, img: NextraImage, ...docsComponents } = getDocsMDXComponents()
+const {
+	tr: Tr,
+	th: Th,
+	table: Table,
+	img: NextraImage,
+	pre: Pre,
+	...docsComponents
+} = getDocsMDXComponents()
+
+const thList = [
+	{ name: 'name', width: '116px' },
+	{ name: 'required', width: '90px' },
+	{ name: 'type', width: 'auto' },
+	{ name: 'default value', width: 'auto' },
+	{ name: 'description', width: 'auto' },
+]
 
 export const useMDXComponents: typeof getDocsMDXComponents = (components) => ({
 	...docsComponents,
@@ -14,11 +29,11 @@ export const useMDXComponents: typeof getDocsMDXComponents = (components) => ({
 					children
 				) : (
 					<Tr>
-						{['name', 'required', 'type', 'default value', 'description'].map(
-							(title) => (
-								<Th align="left">{title}</Th>
-							),
-						)}
+						{thList.map(({ name, width }) => (
+							<Th align="left" style={{ width: width }} key={name}>
+								{name}
+							</Th>
+						))}
 					</Tr>
 				)}
 			</thead>
@@ -36,5 +51,9 @@ export const useMDXComponents: typeof getDocsMDXComponents = (components) => ({
 	),
 	figure: (props) => <figure className="mt-6" {...props} />,
 	figcaption: (props) => <figcaption className="mt-2 text-center text-sm" {...props} />,
+	pre: (props) => {
+		console.log('mdx-components > pre', props.children?.toString())
+		return <Pre {...props} />
+	},
 	...components,
 })

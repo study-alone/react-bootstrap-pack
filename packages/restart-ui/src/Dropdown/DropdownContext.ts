@@ -8,7 +8,7 @@ export type DropdownContextValue<A extends HTMLElement = HTMLElement> = {
 	) => void
 	menuElement: HTMLElement | null
 	toggleElement: HTMLElement | null
-	setMenu: (ref: HTMLElement | null) => void
+	setMenu: (ref: A | null) => void
 	setToggle: (ref: A | null) => void
 	show: boolean
 	placement?: Placement

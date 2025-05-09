@@ -1,0 +1,31 @@
+diff --git a/dist/server/rehype-plugins/rehype.js b/dist/server/rehype-plugins/rehype.js
+index 2c9560a8c3f011cd9f6e99b1ef256a656a22f7ae..6c0c80f163fc0bc7b7fc6a6880656030435681a5 100644
+--- a/dist/server/rehype-plugins/rehype.js
++++ b/dist/server/rehype-plugins/rehype.js
+@@ -34,6 +34,7 @@ const rehypeParseCodeMeta = ({ defaultShowCopyCode }) => (ast) => {
+     node.__filename = meta.match(CODE_BLOCK_FILENAME_RE)?.[1];
+     node.properties["data-filename"] = node.__filename;
+     node.__hasWordWrap = !meta.includes("word-wrap=false");
++    node.__live = meta.includes("live=true");
+     if (node.__hasWordWrap) {
+       node.properties["data-word-wrap"] = "";
+     }
+@@ -43,7 +44,7 @@ const rehypeParseCodeMeta = ({ defaultShowCopyCode }) => (ast) => {
+     }
+   });
+ };
+-const rehypeAttachCodeMeta = ({ search }) => {
++const rehypeAttachCodeMeta = ({ search, ...rest }) => {
+   const parseCodeblocks = typeof search === "object" ? search.codeblocks : search;
+   return (ast) => {
+     visit(
+@@ -58,6 +59,9 @@ const rehypeAttachCodeMeta = ({ search }) => {
+           const codeEl = preEl.children[0];
+           delete codeEl.properties["data-theme"];
+           delete codeEl.properties["data-language"];
++          if (preEl.__live) {
++            preEl.properties["data-live"] = true;
++          }
+           if (preEl.__hasWordWrap) {
+             preEl.properties["data-word-wrap"] = "";
+           }

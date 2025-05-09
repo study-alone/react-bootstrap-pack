@@ -1,3 +1,5 @@
+'use client'
+
 import { type ButtonProps as BaseButtonProps, Button as BaseButton } from '@repo/restart-ui/Button'
 import clsx from 'clsx'
 
